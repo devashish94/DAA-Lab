@@ -1,7 +1,6 @@
 // Code for Selection Sort Algorithm in increasing order
 #include <iostream>
 #include <vector>
-// using namespace std;
 
 void print_array(const std::vector<int>& arr) {
   for (const auto& element : arr) {
