@@ -16,7 +16,7 @@ void swap(std::vector<int>& arr, int first, int second) {
 }
 
 int get_max_index(const std::vector<int>& arr, int start, int end) {
-  int max = 0;
+  int max = start;
   for (int i = start; i <= end; i++) {
     if (arr[i] > arr[max]) {
       max = i;
@@ -25,11 +25,31 @@ int get_max_index(const std::vector<int>& arr, int start, int end) {
   return max;
 }
 
-void selection_sort(std::vector<int>& arr) {
+int get_small_index(const std::vector<int>& arr, int start, int end) {
+  int min = start;
+  for (int i = start; i <= end; i++) {
+    if (arr[i] < arr[min]) {
+      min = i;
+    } 
+  }
+  return min;
+}
+
+void selection_sort_max(std::vector<int>& arr) {
+  std::cout << "------ maximum element select version ------" << std::endl;
   for (int i = 0; i < arr.size(); i++) {
     int last = arr.size() - i - 1;
     int max_index = get_max_index(arr, 0, last);
     swap(arr, last, max_index); 
+  }
+}
+
+void selection_sort_min(std::vector<int>& arr) {
+  std::cout << "------ minimum element select version ------" << std::endl;
+  for (int i = 0; i < arr.size(); i++) {
+    int first = i;
+    int small_index = get_small_index(arr, first, arr.size() - 1);
+    swap(arr, first, small_index);
   }
 }
 
@@ -47,7 +67,7 @@ int main() {
     arr.push_back(temp);
   }
 
-  selection_sort(arr);
+  selection_sort_min(arr);
   std::cout << "Sorted array: ";
   print_array(arr);
 }
