@@ -1,22 +1,22 @@
 // Code for Selection Sort Algorithm in increasing order
 #include <iostream>
 #include <vector>
-using namespace std;
+// using namespace std;
 
-void print_array(const vector<int>& arr) {
+void print_array(const std::vector<int>& arr) {
   for (const auto& element : arr) {
-    cout << element << " ";
+    std::cout << element << " ";
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
-void swap(vector<int>& arr, int first, int second) {
+void swap(std::vector<int>& arr, int first, int second) {
   int temp = arr[first];
   arr[first] = arr[second];
   arr[second] = temp;
 }
 
-int get_max_index(const vector<int>& arr, int start, int end) {
+int get_max_index(const std::vector<int>& arr, int start, int end) {
   int max = 0;
   for (int i = start; i <= end; i++) {
     if (arr[i] > arr[max]) {
@@ -26,7 +26,7 @@ int get_max_index(const vector<int>& arr, int start, int end) {
   return max;
 }
 
-void selection_sort(vector<int>& arr) {
+void selection_sort(std::vector<int>& arr) {
   for (int i = 0; i < arr.size(); i++) {
     int last = arr.size() - i - 1;
     int max_index = get_max_index(arr, 0, last);
@@ -35,7 +35,20 @@ void selection_sort(vector<int>& arr) {
 }
 
 int main() {
-  vector<int> arr = {5, 4, 3, 2, 1};
+  std::vector<int> arr;
+  int length;
+
+  std::cout << "Enter the number of elements: ";
+  std::cin >> length; 
+
+  std::cout << "Now enter all the elements separated by a space: "; 
+  for (int i = 0; i < length; i++) {
+    int temp;
+    std::cin >> temp;
+    arr.push_back(temp);
+  }
+
   selection_sort(arr);
+  std::cout << "Sorted array: ";
   print_array(arr);
 }
