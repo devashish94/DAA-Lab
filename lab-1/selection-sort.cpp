@@ -25,7 +25,7 @@ int get_max_index(const std::vector<int>& arr, int start, int end) {
   return max;
 }
 
-int get_small_index(const std::vector<int>& arr, int start, int end) {
+int get_min_index(const std::vector<int>& arr, int start, int end) {
   int min = start;
   for (int i = start; i <= end; i++) {
     if (arr[i] < arr[min]) {
@@ -36,7 +36,7 @@ int get_small_index(const std::vector<int>& arr, int start, int end) {
 }
 
 void selection_sort_max(std::vector<int>& arr) {
-  std::cout << "------ maximum element select version ------" << std::endl;
+  std::cout << "------ maximum element version ------" << std::endl;
   for (int i = 0; i < arr.size(); i++) {
     int last = arr.size() - i - 1;
     int max_index = get_max_index(arr, 0, last);
@@ -45,12 +45,25 @@ void selection_sort_max(std::vector<int>& arr) {
 }
 
 void selection_sort_min(std::vector<int>& arr) {
-  std::cout << "------ minimum element select version ------" << std::endl;
+  std::cout << "------ minimum element version ------" << std::endl;
   for (int i = 0; i < arr.size(); i++) {
     int first = i;
-    int small_index = get_small_index(arr, first, arr.size() - 1);
+    int small_index = get_min_index(arr, first, arr.size() - 1);
     swap(arr, first, small_index);
   }
+}
+
+void recursion_helper(std::vector<int>& arr, int first, int min_index) {
+  if (first == arr.size()) {
+    return; 
+  }
+  swap(arr, first, min_index);
+  recursion_helper(arr, first + 1, get_min_index(arr, first + 1, arr.size() - 1));
+}
+
+void recursive_selection_sort(std::vector<int>& arr) {
+  std::cout << "------ recursive minimum element version ------" << std::endl;
+  recursion_helper(arr, 0, get_min_index(arr, 0, arr.size() - 1));
 }
 
 int main() {
@@ -67,7 +80,9 @@ int main() {
     arr.push_back(temp);
   }
 
-  selection_sort_min(arr);
+  // Swap this with any of three available methods
+  recursive_selection_sort(arr);
+
   std::cout << "Sorted array: ";
   print_array(arr);
 }
