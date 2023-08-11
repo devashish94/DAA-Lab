@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-int binary_search(const std::vector<int>& arr, int& target) {
+int binary_search(const std::vector<int>& arr, const int& target) {
   int left = 0;
   int right = arr.size() - 1;
 
@@ -13,6 +13,20 @@ int binary_search(const std::vector<int>& arr, int& target) {
       left = mid + 1;
     } else {
       right = mid - 1;
+    }
+  }
+  return -1;
+}
+
+int recursive_binary_search(const std::vector<int>& arr, const int& target, int left, int right) {
+  int mid = left + (right - left) / 2;
+  if (left <= right) {
+    if (arr[mid] == target) {
+      return mid;
+    } else if (arr[mid] < target) {
+      return recursive_binary_search(arr, target, mid + 1, right);
+    } else {
+      return recursive_binary_search(arr, target, left, mid - 1);
     }
   }
   return -1;
@@ -36,7 +50,8 @@ int main() {
   std::cout << "Enter the element you want to search: ";
   std::cin >> target;
 
-  int index = binary_search(arr, target);
+  // int index = binary_search(arr, target);
+  int index = recursive_binary_search(arr, target, 0, arr.size() - 1);
   if (index == -1) {
     std::cout << "{Not Found} The element was not found in the array" << std::endl;
   } else {
