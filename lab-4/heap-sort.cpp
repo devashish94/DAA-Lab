@@ -2,7 +2,7 @@
 #include <vector>
 using std::cout, std::swap, std::endl, std::vector;
 
-void print(std::vector<int>& arr) {
+void print(const std::vector<int>& arr) {
   for (const auto& element : arr) {
     std::cout << element << " ";
   }
