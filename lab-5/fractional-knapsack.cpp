@@ -7,20 +7,6 @@ public:
   int profit;
   int weight;
   double pw;
-
-  Item () {
-    id = 0;
-    profit = 0;
-    weight = 0;
-    pw = 0.0;
-  }
-
-  Item (int i, int p, int w) {
-    id = i;
-    profit = p;
-    weight = w;
-    pw = (double) p / (double) w;
-  }
 };
 
 void print(Item arr[], int n) {
@@ -43,6 +29,12 @@ void sort(Item arr[], int n) {
   }
 }
 
+void calculate_ratio(Item items[], int n) {
+  for (int i = 0; i < n; i++) {
+    items[i].pw = (double) items[i].profit / items[i].weight;
+  }
+}
+
 int main() {
   int n = 7;
   int m = 15;
@@ -57,7 +49,8 @@ int main() {
     {7, 3, 1}
   };
 
-  sort(items, n);
+  calculate_ratio(items, n); // profit / weight
+  sort(items, n); // in decreasing order
   print(items, n);
 
   double total_profit = 0;
