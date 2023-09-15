@@ -9,19 +9,7 @@ public:
   int d;
 };
 
-void print(Job arr[], int n) {
-  for (int i = 0; i < n; i++) {
-    cout << arr[i].id << " | " << arr[i].p << " | " << arr[i].d << '\n';
-  }
-}
-
-void print_q(int arr[], int n) {
-  for (int i = 0; i < n; i++) {
-    cout << arr[i] << " ";
-  }
-  cout << '\n';
-}
-
+// This runs in O(n^2), optimize this to native sort in c++
 void sort(Job arr[], int n) {
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
