@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# InteliJ Idea
+.idea/
+out/
+
+# Java Class files
+*.class
+
