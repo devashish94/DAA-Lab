@@ -9,6 +9,12 @@ public:
   int d;
 };
 
+void print(Job arr[], int n) {
+  for (int i = 0; i < n; i++) {
+    cout << arr[i].id << " " << arr[i].p << " " << arr[i].d << endl;
+  }
+}
+
 // This runs in O(n^2), optimize this to native sort in c++
 void sort(Job arr[], int n) {
   for (int i = 0; i < n; i++) {
@@ -61,6 +67,7 @@ int main() {
 
   // sort jobs in decreasing with respect to profit
   sort(arr, n);  
+  print(arr, n);
 
   // get maximum deadline
   int m = get_max_d(arr, n);
